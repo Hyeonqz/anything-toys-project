@@ -83,27 +83,3 @@ subprojects {
     }
 
 }
-
-project(':module-api') {
-    dependencies {
-        implementation project(':module-core')
-    }
-}
-
-project(':module-external') {
-    dependencies {
-        implementation project(':module-common')
-    }
-}
-
-project(':module-batch') {
-    dependencies {
-        implementation project(':module-core')
-        implementation project(':module-common')
-    }
-}
-
-project(':module-common') {
-    dependencies {
-    }
-}
