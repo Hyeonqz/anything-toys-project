@@ -11,23 +11,11 @@ spring:
   config:
     activate:
       on-profile: local
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/toys?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
-        highlight_sql: true
-    defer-datasource-initialization: true
-    open-in-view: false
+    import:
+      - classpath:anything-common.yml
+      - classpath:kafka/kafka.yml
+      - classpath:telegram/telegram.yml
+      - classpath:vault/vault.yml
 
 --- # dev
 spring:
