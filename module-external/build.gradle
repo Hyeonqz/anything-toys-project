@@ -1,10 +1,34 @@
 plugins {
-    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.plugin.spring'
+}
+
+ext {
+    kotlinVersion = '2.1.20'
 }
 
 bootJar { enabled = true }
 jar { enabled = false }
 
-dependencies {
+repositories {
+    mavenCentral()
+}
 
+dependencies {
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    implementation project(':module-common')
+
+    // kafka
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+test {
+    useJUnitPlatform()
 }

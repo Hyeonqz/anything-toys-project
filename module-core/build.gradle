@@ -1,10 +1,24 @@
 plugins {
-    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.plugin.spring'
 }
 
 bootJar { enabled = true }
 jar { enabled = false }
 
-dependencies {
+repositories {
+    mavenCentral()
+}
 
+dependencies {
+    implementation project(':module-external')
+    implementation project(':module-common')
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+test {
+    useJUnitPlatform()
 }
