@@ -1,0 +1,3 @@
+rootProject.name = 'anything-toy'
+include 'module-external'
+include 'module-core'
