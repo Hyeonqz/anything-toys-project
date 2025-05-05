@@ -65,5 +65,17 @@ subprojects {
 project(':module-core') {
     dependencies {
         implementation project(':module-external')
+        implementation project(':module-common')
+    }
+}
+
+project(':module-external') {
+    dependencies {
+        implementation project(':module-common')
+    }
+}
+
+project(':module-common') {
+    dependencies {
     }
 }
