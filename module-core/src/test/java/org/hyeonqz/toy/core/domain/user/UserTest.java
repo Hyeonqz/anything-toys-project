@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 @ActiveProfiles("local")
 @SpringBootTest
@@ -20,6 +21,7 @@ class UserTest {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Transactional
 	@Test
 	@DisplayName("User를 생성한다")
 	void UserCreateTest() {
