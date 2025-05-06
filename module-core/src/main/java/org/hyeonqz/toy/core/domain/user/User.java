@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.Comment;
 import org.hyeonqz.toy.core.domain.lotto.model.Lotto;
+import org.hyeonqz.toy.core.domain.user.enums.AlarmState;
 import org.hyeonqz.toy.core.domain.user.enums.ServiceStatus;
 import org.hyeonqz.toy.core.domain.user.enums.ServiceType;
 
@@ -46,6 +47,11 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, columnDefinition = "char(1)")
 	private ServiceType serviceType;
+
+	@Comment("알람 상태")
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "char(1)")
+	private AlarmState alarmState;
 
 	@Comment("User 이름")
 	@Column(nullable = false, columnDefinition = "varchar(50)")
