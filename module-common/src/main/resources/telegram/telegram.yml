@@ -4,8 +4,16 @@ spring:
     activate:
       on-profile: local
 
+telegram:
+  token: 7180796006:AAEG6Eq3SU3OrQIZkP1UWtlTWdzIaM1mvFo
+  chatId: -1002674049512
+
 --- # dev
 spring:
   config:
     activate:
       on-profile: dev
+
+telegram:
+  token: 7180796006:AAEG6Eq3SU3OrQIZkP1UWtlTWdzIaM1mvFo
+  chatId: -1002674049512
