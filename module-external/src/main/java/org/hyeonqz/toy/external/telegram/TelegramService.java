@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class TelegramService {
+public class TelegramService implements NotificationService {
 	private static final String BASE_URL = "https://api.telegram.org/bot";
 	private static final String BOTTOM = "/sendMessage?chat_id=";
 	private static final String TEXT = "$text=";
@@ -32,16 +32,29 @@ public class TelegramService {
 	private String botToken;
 
 	// kafkaListener 로 처리
-	public void sendMessage(String message) {
+	@Override
+	public void sendNotification(String message) {
 		String url = BASE_URL + botToken + BOTTOM + chatId + TEXT + message;
-		try {
-			restClient.post()
-				.uri(url)
-				.retrieve()
-				.toBodilessEntity();
-		} catch (Exception e) {
-			log.error("Telegram Message Send Error", e);
+
+		int maxRetries = 3;
+		for (int i = 1; i <= maxRetries; i++) {
+			try {
+				restClient.post()
+					.uri(url)
+					.retrieve()
+					.toBodilessEntity();
+				return;
+			} catch (Exception e) {
+				if (i == maxRetries)
+					log.error("Telegram Send Message Error : {} \n{}", e.getMessage(), e.getStackTrace());
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException ie) {
+					Thread.currentThread().interrupt();
+				}
+			}
 		}
+
 	}
 
 }
