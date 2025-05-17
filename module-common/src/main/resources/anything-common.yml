@@ -14,6 +14,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hyeonqz.toy.common.configs.CustomPhysicalNamingStrategy
     properties:
       hibernate:
         format_sql: true
