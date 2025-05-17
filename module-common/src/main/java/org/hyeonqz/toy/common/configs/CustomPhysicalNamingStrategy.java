@@ -28,7 +28,6 @@ public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
 
     @Override
     public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment jdbcEnvironment) {
-        // @Column(name = "ROUND_NUMBER")의 이름을 그대로 사용
         return name;
     }
 
